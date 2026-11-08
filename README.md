@@ -4,7 +4,7 @@
 
 ## 离线试用
 
-1. 下载并解压 [0.2.1 离线包](https://github.com/vickttt/hyperevm-block-window/releases/tag/v0.2.1)，或下载本仓库源码后解压，用 Chrome 打开 `index.html`。
+1. 下载并解压 [0.2.1 可运行离线包](https://github.com/vickttt/hyperevm-block-window/releases/download/v0.2.1/HyperEVM._0.2.1_.zip)，或下载 [固定完整源码 ZIP](https://github.com/vickttt/hyperevm-block-window/archive/56632f2fcf06e992bcf9045b66e83f9a3fc0e87e.zip)，用 Chrome 打开 `index.html`。
 2. 在「按高度对照两份快照」中选 `demo/01-reference.json` 和 `demo/02-recheck.csv`，点击「对照快照」。应显示 8 个匹配、0 个差异。
 3. 点击「导出可复现对照包」，再从「复现别人分享的对照」打开导出的文件。也可直接导入 `demo/03-replay.json`。页面会重新计算差异。
 
@@ -25,3 +25,9 @@ chainId,capturedAt,number,timestamp,gasLimit,hash,parentHash
 本仓库公开源码供查看和复现。本次发布未附加开源许可证。样例来源及适用条件以上游说明为准。 [GitHub 关于公开仓库许可的说明](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
 
 发布 ZIP 的 SHA-256 为 `798a8425e5f829e2c106f0312ad92671d72a0f7e58796fd8adde671b143450fe`。
+
+## 2026-11-08 下载更正
+
+旧 `v0.2.1` 标签指向初始化提交 `606a4316d7768e7c1155d91493ecc0358191aace`，因此该 Release 下 GitHub 自动生成的 **Source code (zip/tar.gz) 只有初始 README，不能运行**。请使用上方两个明确的下载链接，不要使用旧标签的自动源码包。旧标签和上传的离线包保留，便于追溯。
+
+完整源码固定在提交 `56632f2fcf06e992bcf9045b66e83f9a3fc0e87e`。其自动源码 ZIP 已匿名下载核验，包含 `index.html`、脚本、样式、测试和三个示例。ZIP SHA-256：`380a95667fc4e8f84b7699f0e82b104aceed1fee07440cc623b2fddd64758886`。该源码档案与原上传包的 9 个程序、测试和示例文件一致；README 说明不同。此更正不更改程序、数据或许可。
