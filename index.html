@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file:; style-src 'self' file:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>HyperEVM 测试网区块核对</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="window.js"></script>
+  <script defer src="sample.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<main data-offline-only>
+  <header>
+    <p class="eyebrow">研发工具 · HyperEVM 测试网 998</p>
+    <h1>核对一段区块是否连续</h1>
+    <p>检查区块是否连续，或对照两份快照，定位漏块和哈希差异。</p>
+  </header>
+  <section class="input" aria-labelledby="input-title">
+    <h2 id="input-title">选择区块窗口</h2>
+    <div class="controls" id="live-params">
+      <label>结束区块高度<input id="end" type="number" min="1" inputmode="numeric" placeholder="留空取最新区块"></label>
+      <label>区块数<input id="count" type="number" min="2" max="64" value="16" inputmode="numeric"></label>
+    </div>
+    <div class="actions">
+      <button id="fetch" type="button">查询公开测试网</button>
+      <button id="sample" class="secondary" type="button">打开离线样例</button>
+    </div>
+    <details><summary>导入已导出的快照</summary><label>选择本机 JSON<input id="import" type="file" accept=".json,application/json"></label></details>
+    <p class="hint" id="live-note">联网查询只请求测试网链 ID 和区块数据。页面不读取钱包或交易明细。</p>
+  </section>
+  <section class="output" aria-labelledby="output-title">
+    <h2 id="output-title">核对结果</h2>
+    <p id="status" role="status">等待查询或导入</p>
+    <div id="report" hidden>
+      <p id="provenance" class="hint"></p>
+      <div class="gas"><h3>窗口内区块 Gas 上限分布</h3><div id="groups"></div></div>
+      <div class="actions"><button id="export" class="secondary" type="button">导出快照 JSON</button><button id="use-baseline" class="secondary" type="button">用此快照作基准</button></div>
+      <details><summary>展开区块明细</summary>
+        <div class="table"><table><thead><tr><th>高度</th><th>时间 UTC</th><th>间隔</th><th>Gas 上限</th><th>区块哈希</th></tr></thead><tbody id="rows"></tbody></table></div>
+      </details>
+    </div>
+  </section>
+  <section class="comparison" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">按高度对照两份快照</h2>
+    <p class="hint">基准为连续 JSON 快照。待查数据可选择原有 JSON，或把表格按模板保存成 CSV。两份文件都在本机处理。</p>
+    <div class="controls">
+      <label>基准快照<input id="baseline" type="file" accept=".json,application/json"></label>
+      <label>待查快照（JSON 或 CSV）<input id="candidate" type="file" accept=".json,.csv,application/json,text/csv"></label>
+    </div>
+    <details><summary>查看 CSV 表头与真实演示文件</summary><p class="hint">列顺序为 chainId、capturedAt、number、timestamp、gasLimit、hash、parentHash。从解压目录的 demo 文件夹选择 01-reference.json 和 02-recheck.csv。</p></details>
+    <p id="baseline-note" class="hint" hidden></p>
+    <div class="actions">
+      <button id="compare" type="button">对照快照</button>
+      <button id="compare-demo" class="secondary" type="button">试用带差异的示例</button>
+    </div>
+    <details><summary>复现别人分享的对照</summary><label>打开对照包 JSON<input id="import-comparison" type="file" accept=".json,application/json"></label></details>
+    <p id="compare-status" role="status">等待对照</p>
+    <div id="compare-result" hidden>
+      <p id="compare-note" class="hint"></p>
+      <div class="table" id="difference-table" hidden><table><thead><tr><th>区块高度</th><th>差异</th><th>说明</th></tr></thead><tbody id="differences"></tbody></table></div>
+      <div class="actions"><button id="export-comparison" class="secondary" type="button">导出可复现对照包</button></div>
+    </div>
+  </section>
+  <p class="hint">结果反映本窗口及 RPC 返回的数据。父哈希衔接不能证明共识或最终性，区块间隔也不能代表交易确认时间。</p>
+</main>
+</body>
+</html>

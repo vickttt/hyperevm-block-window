@@ -1,0 +1,35 @@
+:root { font: 16px/1.55 system-ui, sans-serif; background: #f3f5f7; color: #172e42; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+main { max-width: 860px; margin: auto; padding: 30px 16px; }
+h1, h2, h3, p { margin: 0 0 10px; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.55rem); }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+.eyebrow, .hint { color: #4b6072; font-size: .9rem; }
+section { margin: 17px 0; padding: 16px; border: 1px solid #d3dce5; border-radius: 12px; background: #fff; }
+.input { border-left: 4px solid #2c69a2; }
+.output { border-left: 4px solid #388367; }
+.comparison { border-left: 4px solid #986b38; }
+.comparison .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
+.controls { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; max-width: 520px; }
+label { display: block; font-weight: 650; min-width: 0; }
+input { width: 100%; margin: 4px 0 9px; padding: 7px; border: 1px solid #8c9dad; border-radius: 6px; font: inherit; font-weight: 400; }
+.actions { display: flex; flex-wrap: wrap; gap: 7px; margin: 5px 0 10px; }
+button { background: #225c91; color: #fff; border: 1px solid #225c91; border-radius: 7px; font: inherit; font-weight: 650; padding: 6px 11px; cursor: pointer; }
+.secondary { background: #edf3f9; color: #225c91; }
+button:disabled { opacity: .65; cursor: default; }
+summary { cursor: pointer; font-weight: 650; margin-bottom: 6px; }
+#status, #compare-status { font-weight: 700; }
+[data-alert] { color: #8e381e; }
+.gas { background: #eef7f1; padding: 12px; margin-bottom: 12px; border-radius: 8px; }
+.bar { display: grid; grid-template-columns: minmax(7.5rem, 1fr) minmax(0, 2fr) 3rem; gap: 8px; align-items: center; }
+progress { width: 100%; accent-color: #277353; }
+.table { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .86rem; white-space: nowrap; }
+td, th { text-align: left; padding: 6px 9px; border-bottom: 1px solid #d8e2ea; }
+@media (max-width: 550px) {
+  .controls, .comparison .controls { grid-template-columns: 1fr; gap: 0; }
+  .comparison table { white-space: normal; }
+  .comparison td, .comparison th { padding: 6px; }
+}
